@@ -3,6 +3,8 @@ using System.Collections;
 
 public class MapGenerator : MonoBehaviour
 {
+    public enum DrawMode { NoiseMap, ColourMap};
+    public DrawMode DMode;
 
     public int MapWidth;
     public int MapHeight;
@@ -18,12 +20,38 @@ public class MapGenerator : MonoBehaviour
     
     public bool AutoUpdate;
 
-    public void GenerateMap()
+    public TerrainType[] Regions;
+
+     public void GenerateMap()
     {
         float[,] NoiseMap = Noise.GenerateNoiseMap(MapWidth, MapHeight, Seed, NoiseScale, Octaves, Persistance, Lacunarity, Offset);
 
+        Color[] ColourMap = new Color[MapWidth * MapHeight];
+        for(int y = 0; y < MapHeight; y++)
+        {
+            for (int x = 0; x < MapWidth; x++)
+            {
+                float CurrentHeight = NoiseMap[x, y];
+                for (int i = 0; i< Regions.Length; i++)
+                {
+                    if(CurrentHeight <= Regions[i].Height)
+                    {
+                        ColourMap[y * MapWidth + x] = Regions[i].Colour;
+                        break;
+                    }
+                }
+            }
+        }
+
         MapDisplay Display = FindObjectOfType<MapDisplay>();
-        Display.DrawNoiseMap(NoiseMap);
+        if (DMode == DrawMode.NoiseMap)
+        {
+            Display.DrawTexture(TextureGenerator.TextureFromHeightMap(NoiseMap));
+        }        
+        else if (DMode == DrawMode.ColourMap)
+        {
+            Display.DrawTexture(TextureGenerator.TextureFromColourMap(ColourMap, MapWidth, MapHeight));
+        }
     }
 
     void OnValidate()
@@ -48,4 +76,12 @@ public class MapGenerator : MonoBehaviour
             Octaves = 0;
         }
     }
+}
+
+[System.Serializable]
+public struct TerrainType
+{
+    public string Name;
+    public float Height;
+    public Color Colour;
 }

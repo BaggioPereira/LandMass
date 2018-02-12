@@ -258,7 +258,7 @@ Transform:
   m_GameObject: {fileID: 929977530}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 1, z: 100}
+  m_LocalScale: {x: 256, y: 1, z: 256}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -381,7 +381,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468c3b71134ce5d4ab58fe9f813e00f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MapWidth: 100
-  MapHeight: 100
-  NoiseScale: 15
+  DMode: 1
+  MapWidth: 256
+  MapHeight: 256
+  NoiseScale: 30.02
+  Octaves: 14
+  Persistance: 0.051
+  Lacunarity: 2
+  Seed: 63
+  Offset: {x: 0, y: 0}
   AutoUpdate: 1
+  Regions:
+  - Name: Water Deep
+    Height: 0.3
+    Colour: {r: 0, g: 0.0029911995, b: 1, a: 0}
+  - Name: Land Shallow
+    Height: 0.4
+    Colour: {r: 0.331, g: 0.334, b: 1, a: 0}
+  - Name: Land
+    Height: 0.6
+    Colour: {r: 0, g: 1, b: 0, a: 0}
+  - Name: Mid Land
+    Height: 0.7
+    Colour: {r: 0, g: 0.60294116, b: 0, a: 0}
+  - Name: High Land
+    Height: 0.9
+    Colour: {r: 0, g: 0.17647058, b: 0, a: 0}
+  - Name: Peak
+    Height: 1
+    Colour: {r: 1, g: 1, b: 1, a: 0}
