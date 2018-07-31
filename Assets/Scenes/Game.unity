@@ -386,9 +386,9 @@ MonoBehaviour:
   MapHeight: 256
   NoiseScale: 30.02
   Octaves: 14
-  Persistance: 0.051
+  Persistance: 0
   Lacunarity: 2
-  Seed: 63
+  Seed: 21
   Offset: {x: 0, y: 0}
   AutoUpdate: 1
   Regions:
@@ -398,6 +398,9 @@ MonoBehaviour:
   - Name: Land Shallow
     Height: 0.4
     Colour: {r: 0.331, g: 0.334, b: 1, a: 0}
+  - Name: Sand
+    Height: 0.45
+    Colour: {r: 1, g: 0.80689657, b: 0, a: 0}
   - Name: Land
     Height: 0.6
     Colour: {r: 0, g: 1, b: 0, a: 0}
